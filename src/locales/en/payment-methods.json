@@ -1,0 +1,15 @@
+{
+  "paymentMethods.code": "",
+  "paymentMethods.placeholder.code": "",
+  "paymentMethods.name": "",
+  "paymentMethods.placeholder.name": "",
+  "paymentMethods.note": "",
+  "paymentMethods.placeholder.note": "",
+  "paymentMethods.status": "",
+  "paymentMethods.placeholder.status": "",
+  "paymentMethods.createdAt": "",
+  "paymentMethods.master.subHeader": "",
+  "paymentMethods.master.header": "",
+  "paymentMethods.master.title": "",
+  "paymentMethods.stt": ""
+}

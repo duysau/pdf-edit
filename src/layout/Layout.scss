@@ -1,0 +1,30 @@
+.layout__container {
+  .layout-body {
+    padding-top: 48px;
+    .layout-sidebar {
+      display: flex;
+    }
+  }
+  .layout-footer {
+    position: absolute;
+    padding: 8px 16px;
+    bottom: 0px;
+    left: 0px;
+    overflow: hidden;
+    text-align: center;
+    color: var(--palette-gray-100);
+    z-index: 300;
+    background-color: var(--color-white);
+    width: 100%;
+  }
+  .layout-body__main {
+    .page-body {
+      display: flex;
+      width: 100%;
+      height: calc(100vh - 48px);
+      .page-content {
+        flex-grow: 1;
+      }
+    }
+  }
+}

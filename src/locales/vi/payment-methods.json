@@ -1,0 +1,15 @@
+{
+  "paymentMethods.code": "Mã phương thức thanh toán",
+  "paymentMethods.placeholder.code": "Nhập mã",
+  "paymentMethods.name": "Tên PT thanh toán",
+  "paymentMethods.placeholder.name": "Nhập tên",
+  "paymentMethods.note": "Ghi chú",
+  "paymentMethods.placeholder.note": "Nhập ghi chú",
+  "paymentMethods.status": "Trạng thái",
+  "paymentMethods.placeholder.status": "Chọn trạng thái",
+  "paymentMethods.createdAt": "Ngày tạo",
+  "paymentMethods.master.subHeader": "Quản lý phương thức thanh toán",
+  "paymentMethods.master.header": "Quản lý thanh toán",
+  "paymentMethods.master.title": "Danh sách phương thức thanh toán",
+  "paymentMethods.stt": "STT"
+}

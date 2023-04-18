@@ -1,0 +1,19 @@
+{
+  "general.actions.view": "Xem chi tiết",
+  "general.actions.edit": "Sửa",
+  "general.actions.delete": "Xóa",
+  "general.actions.create": "Thêm mới",
+  "general.actions.label": "",
+  "general.actions.cancel": "Hủy",
+  "general.titles.edit": "",
+  "general.titles.create": "",
+  "general.toasts.error": "",
+  "general.toasts.success": "",
+  "general.deletes.title": "Bạn đang thực hiện thao tác xóa",
+  "general.deletes.content": "Bạn có chắc chắn muốn xóa các bản ghi đã chọn ?",
+  "general.errors.validations.typeError": "",
+  "general.errors.validations.required": "",
+  "general.notification.title": "Thông báo",
+  "general.notification.unread": "Chưa đọc",
+  "general.notification.viewAll": "Xem tất cả"
+}
