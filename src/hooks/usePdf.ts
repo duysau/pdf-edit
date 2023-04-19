@@ -1,6 +1,5 @@
 import { useState, useCallback } from "react";
-import { Attachments, Dimensions } from "types";
-import { save } from "ultis/pdf";
+import { save } from "utils/pdf";
 
 export interface Pdf {
   name: string;

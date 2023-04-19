@@ -1,14 +1,9 @@
 import React from "react";
 
-import { AttachmentTypes } from "entities";
-import {
-  Attachment,
-  Dimensions,
-  DrawingAttachment,
-  ImageAttachment,
-  TextAttachment,
-} from "types";
+// import { AttachmentTypes } from "entities";
+
 import { Text } from "container/Text";
+import { AttachmentTypes } from "entities/index";
 import { Image } from "container/Image";
 import { Drawing } from "container/Drawing";
 

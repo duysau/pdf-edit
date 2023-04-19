@@ -1,8 +1,7 @@
 import React, { createRef, useEffect, useState } from "react";
 import { DragActions } from "../entities";
 import { Drawing as DrawingComponent } from "../components/PdfEditor/Drawing";
-import { getMovePosition } from "ultis/helper";
-import { DrawingAttachment } from "types";
+import { getMovePosition } from "utils/helper";
 
 interface Props {
   pageWidth: number;

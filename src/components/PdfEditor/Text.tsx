@@ -1,6 +1,6 @@
-import { TextMode } from "entities";
+// import { TextMode } from "entities";
+import { TextMode } from "entities/index";
 import React, { RefObject } from "react";
-import { DragEventListener } from "types";
 
 interface Props {
   inputRef: RefObject<HTMLInputElement>;

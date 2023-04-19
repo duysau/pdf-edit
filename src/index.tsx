@@ -9,6 +9,9 @@ import { httpInterceptor } from "core/config/http";
 import "assets/scss/app.scss";
 import LoadingPage from "core/pages/LoadingPage/LoadingPage";
 import { utilService } from "core/services/common-services/util-service";
+import { prepareAssets } from "utils/prepareAssets";
+
+prepareAssets();
 
 const PrivateRoute = React.lazy(async () => {
   await Promise.all([

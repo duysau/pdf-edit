@@ -1,6 +1,5 @@
+import { DeleteOutlined } from "@ant-design/icons";
 import React, { RefObject } from "react";
-import { ConfirmContent } from "./ConfirmContent";
-import { DragEventListener } from "types";
 
 interface Props {
   path?: string;
@@ -51,28 +50,22 @@ export const Drawing: React.FC<Props> = ({
         left: positionLeft,
         width,
         height,
-        cursor: "move",
       }}
     >
-      <Dimmer.Dimmable as={Div} dimmed={dimmerActive}>
-        <svg ref={svgRef}>
-          <path
-            strokeWidth={strokeWidth}
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            stroke={stroke}
-            fill="none"
-            d={path}
-          />
-        </svg>
-        <Dimmer active={dimmerActive} onClickOutside={cancelDelete}>
-          <ConfirmContent
-            title="Delete?"
-            onConfirm={deleteDrawing}
-            onDismiss={cancelDelete}
-          />
-        </Dimmer>
-      </Dimmer.Dimmable>
+      <svg ref={svgRef} cursor={"move"}>
+        <path
+          strokeWidth={strokeWidth}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          stroke={stroke}
+          fill="none"
+          d={path}
+        />
+      </svg>
+      <DeleteOutlined
+        style={{ position: "absolute", cursor: "pointer" }}
+        onClick={deleteDrawing}
+      />
     </div>
   );
 };

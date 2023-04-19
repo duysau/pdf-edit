@@ -1,4 +1,3 @@
-import { Header } from "antd/lib/layout/layout";
 import React from "react";
 import { Button } from "react3l-ui-library";
 
@@ -14,8 +13,6 @@ export const ConfirmContent: React.FC<Props> = ({
   onDismiss,
 }) => (
   <div>
-    <Header>{title}</Header>
-
     <Button onClick={onDismiss}>No</Button>
     <Button onClick={onConfirm}>Yes</Button>
   </div>

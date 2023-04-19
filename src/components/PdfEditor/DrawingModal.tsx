@@ -1,5 +1,7 @@
+/*eslint-disable @typescript-eslint/no-unused-vars*/
 import React, { useState, createRef, useEffect } from "react";
 import { Color } from "../../entities";
+import { Badge, Modal, Select } from "antd";
 
 interface Props {
   open: boolean;
@@ -14,6 +16,19 @@ interface Props {
   drawing?: DrawingAttachment;
 }
 
+const strokeSizes = [
+  { value: 1, label: "1" },
+  { value: 2, label: "2" },
+  { value: 3, label: "3" },
+  { value: 4, label: "4" },
+  { value: 5, label: "5" },
+  { value: 6, label: "6" },
+  { value: 7, label: "7" },
+  { value: 8, label: "8" },
+  { value: 9, label: "9" },
+  { value: 10, label: "10" },
+];
+
 export const DrawingModal = ({ open, dismiss, confirm, drawing }: Props) => {
   const svgRef = createRef<SVGSVGElement>();
   const [paths, setPaths] = useState<Array<[string, number, number]>>([]);
@@ -27,8 +42,6 @@ export const DrawingModal = ({ open, dismiss, confirm, drawing }: Props) => {
   const [mouseDown, setMouseDown] = useState(false);
   const [strokeWidth, setStrokeWidth] = useState(5);
   const [stroke, setStroke] = useState(Color.BLACK);
-  const [strokeDropdownOpen, setStrokeDropdownOpen] = useState(false);
-
   useEffect(() => {
     const svg = svgRef.current;
     if (!svg) return;
@@ -113,105 +126,54 @@ export const DrawingModal = ({ open, dismiss, confirm, drawing }: Props) => {
     dismiss();
   };
 
-  // TODO: Move to config
-  const strokeSizes = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-
   const handleStrokeSelect = (color: Color) => () => {
     setStroke(color);
-    setStrokeDropdownOpen(false);
   };
 
   return (
-    <Modal size="small" dimmer="inverted" open={open} onClose={closeModal}>
-      <Modal.Header>Add your Drawing</Modal.Header>
-      <Modal.Content>
-        <Menu size="tiny">
-          <Menu.Item header>Tools</Menu.Item>
-          {/* <Menu.Item><Icon name="undo" /></Menu.Item>
-                    <Menu.Item><Icon name="redo" /></Menu.Item> */}
-          <Menu.Menu position="right">
-            <Dropdown item text={`${strokeWidth}`}>
-              <Dropdown.Menu>
-                {strokeSizes.map((size) => (
-                  <Dropdown.Item
-                    key={size}
-                    selected={size === strokeWidth}
-                    onClick={() => setStrokeWidth(size)}
-                  >
-                    {size}
-                  </Dropdown.Item>
-                ))}
-              </Dropdown.Menu>
-            </Dropdown>
-            <Dropdown
-              item
-              trigger={<Label color={stroke} />}
-              onClick={() => setStrokeDropdownOpen(true)}
-              onBlur={() => setStrokeDropdownOpen(false)}
-            >
-              <Dropdown.Menu open={strokeDropdownOpen}>
-                <div
-                  style={{
-                    display: "grid",
-                    gridTemplateColumns: "repeat(3, 1fr)",
-                    padding: 5,
-                  }}
-                >
-                  {Object.values(Color).map((color, index) => (
-                    <div style={{ margin: 2.5 }} key={index}>
-                      <Label
-                        color={color}
-                        onClick={handleStrokeSelect(color)}
-                      />
-                    </div>
-                  ))}
-                </div>
-              </Dropdown.Menu>
-            </Dropdown>
-            {/* <Dropdown item text={stroke}>
-                            <Dropdown.Menu>
-                                <Card.Group itemsPerRow={3}>
-                                    {Object.values(Color).map((color, index) => (
-                                        <Card inverted key={index} color={color} />
-                                    ))}
-                                </Card.Group>
-                            </Dropdown.Menu>
-                        </Dropdown> */}
-          </Menu.Menu>
-        </Menu>
-        <div
-          onMouseDown={handleMouseDown}
-          onMouseMove={handleMouseMove}
-          onMouseUp={handleMouseUp}
+    <Modal
+      title="Add your Drawing"
+      open={open}
+      onCancel={closeModal}
+      onOk={handleDone}
+    >
+      <Select
+        defaultValue={strokeWidth}
+        style={{ width: 120 }}
+        onChange={(value) => setStrokeWidth(Number(value))}
+        options={strokeSizes}
+      />
+      <Select>
+        {Object.values(Color).map((color, index) => (
+          <Select.Option value={color} key={color}>
+            <div onClick={handleStrokeSelect(color)}>
+              <Badge color={color} />
+            </div>
+          </Select.Option>
+        ))}
+      </Select>
+      <div
+        onMouseDown={handleMouseDown}
+        onMouseMove={handleMouseMove}
+        onMouseUp={handleMouseUp}
+      >
+        <svg
+          ref={svgRef}
+          style={{
+            width: "100%",
+            height: "50vh",
+          }}
         >
-          <svg
-            ref={svgRef}
-            style={{
-              width: "100%",
-              height: "50vh",
-            }}
-          >
-            <path
-              strokeWidth={strokeWidth}
-              strokeLinejoin="round"
-              strokeLinecap="round"
-              stroke={stroke}
-              fill="none"
-              d={path}
-            />
-          </svg>
-        </div>
-      </Modal.Content>
-      <Modal.Actions>
-        <Button color="black" content="Cancel" onClick={closeModal} />
-        <Button
-          content="Done"
-          labelPosition="right"
-          icon="checkmark"
-          onClick={handleDone}
-          positive
-        />
-      </Modal.Actions>
+          <path
+            strokeWidth={strokeWidth}
+            strokeLinejoin="round"
+            strokeLinecap="round"
+            stroke={stroke}
+            fill="none"
+            d={path}
+          />
+        </svg>
+      </div>
     </Modal>
   );
 };

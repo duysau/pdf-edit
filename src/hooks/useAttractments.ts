@@ -26,7 +26,7 @@ type Action =
   | { type: ActionType.RESET; numberOfPages: number };
 
 const initialState: State = {
-  pageIndex: -1,
+  pageIndex: 0,
   allPageAttachments: [],
   pageAttachments: [],
 };
@@ -98,7 +98,7 @@ const reducer: Reducer<State, Action> = (state: State, action: Action) => {
     case ActionType.RESET: {
       return {
         pageIndex: 0,
-        pageAttachments: [] as string[],
+        pageAttachments: [],
         allPageAttachments: Array(action.numberOfPages).fill([]),
       };
     }

@@ -1,8 +1,7 @@
 import React, { useState, useRef } from "react";
 import { Text as Component } from "../components/PdfEditor/Text";
-import { DragActions, TextMode } from "../entities";
-import { getMovePosition } from "../ultis/helper";
-import { TextAttachment } from "../types";
+import { DragActions, TextMode } from "../entities/index";
+import { getMovePosition } from "../utils/helper";
 
 interface Props {
   pageWidth: number;

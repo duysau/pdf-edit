@@ -1,8 +1,8 @@
 import React, { useState, createRef } from "react";
+import { readAsPDF, readAsDataURL, readAsImage } from "../utils/asyncReader";
 import { Pdf } from "./usePdf";
 import { AttachmentTypes } from "../entities";
-import { readAsPDF, readAsDataURL, readAsImage } from "ultis/asyncReader";
-import { ggID } from "ultis/helper";
+import { ggID } from "utils/helper";
 
 type ActionEvent<T> = React.TouchEvent<T> | React.MouseEvent<T>;
 

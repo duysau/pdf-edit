@@ -1,8 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { DragActions } from "../entities";
 import { Image as ImageComponent } from "../components/PdfEditor/Image";
-import { ImageAttachment } from "types";
-import { getMovePosition } from "ultis/helper";
+import { getMovePosition } from "utils/helper";
 
 const IMAGE_MAX_SIZE = 300;
 

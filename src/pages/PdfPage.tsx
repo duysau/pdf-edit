@@ -1,16 +1,17 @@
-import { Button, Card, Col, Row } from "antd";
+import { LeftCircleFilled, RightCircleFilled } from "@ant-design/icons";
+import { Card, Col, Row } from "antd";
 import { Attachments } from "components/PdfEditor/Attractment";
 import { DrawingModal } from "components/PdfEditor/DrawingModal";
 import { EmptyComponent } from "components/PdfEditor/Empty";
 import { MenuBar } from "components/PdfEditor/MenuBar";
 import { Page } from "components/PdfEditor/Page";
-import { AttachmentTypes } from "entities";
+import { AttachmentTypes } from "entities/index";
 import { useAttachments } from "hooks/useAttractments";
 import { Pdf, usePdf } from "hooks/usePdf";
 import { UploadTypes, useUploader } from "hooks/useUploader";
 import { useLayoutEffect, useState } from "react";
 import { Container } from "reactstrap";
-import { ggID } from "ultis/helper";
+import { ggID } from "utils/helper";
 
 const PdfPage = () => {
   const [drawingModalOpen, setDrawingModalOpen] = useState(false);
@@ -69,7 +70,7 @@ const PdfPage = () => {
   const addText = () => {
     const newTextAttachment: TextAttachment = {
       id: ggID(),
-      type: AttachmentTypes.TEXT,
+      type: "text",
       x: 0,
       y: 0,
       width: 120,
@@ -134,7 +135,6 @@ const PdfPage = () => {
     <Container style={{ margin: 30 }}>
       {hiddenInputs}
       <MenuBar
-        openHelp={() => setHelpModalOpen(true)}
         savePdf={handleSavePdf}
         addText={addText}
         addImage={handleImageClick}
@@ -147,13 +147,14 @@ const PdfPage = () => {
       {!file ? (
         <EmptyComponent loading={isUploading} uploadPdf={handlePdfClick} />
       ) : (
-        <Row>
-          <Col span={3}>
+        <Row align={"middle"} justify={"center"}>
+          <Col span={1}>
             {isMultiPage && !isFirstPage && (
-              <Button icon="angle left" onClick={previousPage} />
+              // <Button icon="angle left" onClick={previousPage} />
+              <LeftCircleFilled onClick={previousPage} size={9} />
             )}
           </Col>
-          <Col span={10}>
+          <Col span={18}>
             {currentPage && (
               <Card>
                 <div style={{ position: "relative" }}>
@@ -177,7 +178,10 @@ const PdfPage = () => {
           </Col>
           <Col span={3}>
             {isMultiPage && !isLastPage && (
-              <Button icon="angle right" onClick={nextPage} />
+              <RightCircleFilled
+                onClick={nextPage}
+                style={{ marginLeft: "20px" }}
+              />
             )}
           </Col>
         </Row>

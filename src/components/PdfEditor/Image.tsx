@@ -1,8 +1,5 @@
 import React, { RefObject } from "react";
-import { Dimmer } from "semantic-ui-react";
-import { Div } from "../ui/components/Div";
-import { ConfirmContent } from "./ConfirmContent";
-import { DragEventListener } from "types";
+import { DeleteOutlined } from "@ant-design/icons";
 
 const ADJUSTERS_DIMENSIONS = 20;
 
@@ -58,22 +55,14 @@ export const Image: React.FC<Props> = ({
         cursor: "move",
       }}
     >
-      <Dimmer.Dimmable as={Div} size="medium" dimmed={dimmerActive}>
-        <canvas
-          ref={canvasRef}
-          style={{
-            width: "100%",
-            height: "100%",
-          }}
-        />
-        <Dimmer active={dimmerActive} onClickOutside={cancelDelete}>
-          <ConfirmContent
-            title="Delete?"
-            onConfirm={deleteImage}
-            onDismiss={cancelDelete}
-          />
-        </Dimmer>
-      </Dimmer.Dimmable>
+      <canvas
+        ref={canvasRef}
+        style={{
+          width: "100%",
+          height: "100%",
+        }}
+      />
+
       <div
         data-direction="top-left"
         onMouseDown={handleMouseDown}
@@ -87,6 +76,15 @@ export const Image: React.FC<Props> = ({
           width: ADJUSTERS_DIMENSIONS,
           height: ADJUSTERS_DIMENSIONS,
         }}
+      />
+      <DeleteOutlined
+        style={{
+          position: "absolute",
+          cursor: "pointer",
+          top: -10,
+          right: -18,
+        }}
+        onClick={deleteImage}
       />
     </div>
   );
