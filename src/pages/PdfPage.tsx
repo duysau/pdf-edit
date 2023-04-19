@@ -1,5 +1,5 @@
 import { LeftCircleFilled, RightCircleFilled } from "@ant-design/icons";
-import { Card, Col, Row } from "antd";
+import { Col, Row } from "antd";
 import { Attachments } from "components/PdfEditor/Attractment";
 import { DrawingModal } from "components/PdfEditor/DrawingModal";
 import { EmptyComponent } from "components/PdfEditor/Empty";
@@ -154,26 +154,24 @@ const PdfPage = () => {
               <LeftCircleFilled onClick={previousPage} size={9} />
             )}
           </Col>
-          <Col span={18}>
+          <Col span={11}>
             {currentPage && (
-              <Card>
-                <div style={{ position: "relative" }}>
-                  <Page
-                    dimensions={dimensions}
-                    updateDimensions={setDimensions}
-                    page={currentPage}
+              <div style={{ position: "relative" }}>
+                <Page
+                  dimensions={dimensions}
+                  updateDimensions={setDimensions}
+                  page={currentPage}
+                />
+                {dimensions && (
+                  <Attachments
+                    pdfName={name}
+                    removeAttachment={remove}
+                    updateAttachment={update}
+                    pageDimensions={dimensions}
+                    attachments={pageAttachments}
                   />
-                  {dimensions && (
-                    <Attachments
-                      pdfName={name}
-                      removeAttachment={remove}
-                      updateAttachment={update}
-                      pageDimensions={dimensions}
-                      attachments={pageAttachments}
-                    />
-                  )}
-                </div>
-              </Card>
+                )}
+              </div>
             )}
           </Col>
           <Col span={3}>

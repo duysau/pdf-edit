@@ -36,12 +36,12 @@ export const MenuBar: React.FC<Props> = ({
   ];
   return (
     <Row justify={"center"}>
-      <Col className="gutter-row" span={3}>
+      <Col className="gutter-row" span={2}>
         <div>PDF Editor</div>
       </Col>
       {isPdfLoaded && (
         <>
-          <Col className="gutter-row" span={3}>
+          <Col className="gutter-row" span={2}>
             <Dropdown menu={{ items }} trigger={["click"]}>
               <p onClick={(e) => e.preventDefault()}>
                 <Button>Action</Button>
@@ -49,7 +49,7 @@ export const MenuBar: React.FC<Props> = ({
             </Dropdown>
           </Col>
 
-          <Col className="gutter-row" span={3}>
+          <Col className="gutter-row" span={2}>
             <Button disabled={savingPdfStatus} onClick={savePdf}>
               {savingPdfStatus ? "Saving..." : "Save"}
             </Button>
