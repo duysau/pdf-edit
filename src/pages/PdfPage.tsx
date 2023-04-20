@@ -100,6 +100,7 @@ const PdfPage = () => {
     };
     addAttachment(newDrawingAttachment);
   };
+  console.log("pageAttachments", pageAttachments);
 
   useLayoutEffect(() => setPageIndex(pageIndex), [pageIndex, setPageIndex]);
 

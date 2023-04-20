@@ -1,4 +1,5 @@
 import { DeleteOutlined } from "@ant-design/icons";
+import { Button } from "antd";
 import React, { RefObject } from "react";
 
 interface Props {
@@ -50,6 +51,9 @@ export const Drawing: React.FC<Props> = ({
         left: positionLeft,
         width,
         height,
+        borderStyle: "dashed",
+        borderWidth: 1,
+        borderColor: "grey",
       }}
     >
       <svg ref={svgRef} cursor={"move"}>
@@ -62,8 +66,18 @@ export const Drawing: React.FC<Props> = ({
           d={path}
         />
       </svg>
-      <DeleteOutlined
-        style={{ position: "absolute", cursor: "pointer" }}
+      <Button
+        type="primary"
+        danger
+        shape="circle"
+        icon={<DeleteOutlined />}
+        size="small"
+        style={{
+          position: "absolute",
+          cursor: "pointer",
+          top: -15,
+          right: "50%",
+        }}
         onClick={deleteDrawing}
       />
     </div>

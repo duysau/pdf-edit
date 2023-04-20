@@ -1,5 +1,6 @@
 import React, { RefObject } from "react";
 import { DeleteOutlined } from "@ant-design/icons";
+import { Button } from "antd";
 
 const ADJUSTERS_DIMENSIONS = 20;
 
@@ -62,7 +63,6 @@ export const Image: React.FC<Props> = ({
           height: "100%",
         }}
       />
-
       <div
         data-direction="top-left"
         onMouseDown={handleMouseDown}
@@ -77,13 +77,18 @@ export const Image: React.FC<Props> = ({
           height: ADJUSTERS_DIMENSIONS,
         }}
       />
-      <DeleteOutlined
+      <Button
+        type="primary"
+        danger
+        shape="circle"
+        icon={<DeleteOutlined />}
         style={{
           position: "absolute",
           cursor: "pointer",
-          top: -10,
-          right: -18,
+          top: -15,
+          right: "50%",
         }}
+        size="small"
         onClick={deleteImage}
       />
     </div>

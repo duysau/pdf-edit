@@ -3,7 +3,7 @@ import { DragActions } from "../entities";
 import { Image as ImageComponent } from "../components/PdfEditor/Image";
 import { getMovePosition } from "utils/helper";
 
-const IMAGE_MAX_SIZE = 300;
+const IMAGE_MAX_SIZE = 400;
 
 interface Props {
   pageWidth: number;
@@ -12,7 +12,7 @@ interface Props {
   updateImageAttachment: (imageObject: Partial<ImageAttachment>) => void;
 }
 
-export const Image = ({
+export const Image = React.memo(function Image({
   x,
   y,
   img,
@@ -22,7 +22,7 @@ export const Image = ({
   removeImage,
   pageHeight,
   updateImageAttachment,
-}: ImageAttachment & Props) => {
+}: ImageAttachment & Props) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [canvasWidth, setCanvasWidth] = useState(width);
   const [canvasHeight, setCanvasHeight] = useState(height);
@@ -166,7 +166,7 @@ export const Image = ({
     };
 
     renderImage(img);
-  }, [img, canvasWidth, canvasHeight, updateImageAttachment]);
+  }, [img, canvasWidth, canvasHeight]);
 
   const handleClick = () => setDimmerActive(true);
   const onCancelDelete = () => setDimmerActive(false);
@@ -194,4 +194,4 @@ export const Image = ({
       handleMouseOut={handleMouseOut}
     />
   );
-};
+});

@@ -29,6 +29,20 @@ const strokeSizes = [
   { value: 10, label: "10" },
 ];
 
+const strokeColors = [
+  {
+    value: "black",
+    label: <Badge style={{ width: "30px" }} color={"black"} />,
+  },
+  { value: "red", label: <Badge color={"red"} /> },
+  { value: "green", label: <Badge color={"green"} /> },
+  { value: "yellow", label: <Badge color={"yellow"} /> },
+  { value: "blue", label: <Badge color={"blue"} /> },
+  { value: "purple", label: <Badge color={"purple"} /> },
+  { value: "cyan", label: <Badge color={"cyan"} /> },
+  { value: "white", label: <Badge color={"white"} /> },
+];
+
 export const DrawingModal = ({ open, dismiss, confirm, drawing }: Props) => {
   const svgRef = createRef<SVGSVGElement>();
   const [paths, setPaths] = useState<Array<[string, number, number]>>([]);
@@ -92,6 +106,7 @@ export const DrawingModal = ({ open, dismiss, confirm, drawing }: Props) => {
     setMaxY(0);
     setStrokeWidth(5);
     setStroke(Color.BLACK);
+    console.log("cac cccc");
   };
 
   const handleDone = () => {
@@ -143,7 +158,7 @@ export const DrawingModal = ({ open, dismiss, confirm, drawing }: Props) => {
         onChange={(value) => setStrokeWidth(Number(value))}
         options={strokeSizes}
       />
-      <Select>
+      <Select defaultValue={stroke}>
         {Object.values(Color).map((color, index) => (
           <Select.Option value={color} key={color}>
             <div onClick={handleStrokeSelect(color)}>
@@ -152,6 +167,12 @@ export const DrawingModal = ({ open, dismiss, confirm, drawing }: Props) => {
           </Select.Option>
         ))}
       </Select>
+      {/* <Select
+        defaultValue={stroke}
+        style={{ width: 120 }}
+        onChange={(value) => setStroke(value)}
+        options={strokeColors}
+      /> */}
       <div
         onMouseDown={handleMouseDown}
         onMouseMove={handleMouseMove}
