@@ -14,6 +14,7 @@ interface Props {
   positionTop: number;
   positionLeft: number;
   toggleEditMode: () => void;
+  onClick: () => void;
   handleMouseDown: DragEventListener<HTMLDivElement>;
   handleMouseUp: DragEventListener<HTMLDivElement>;
   handleMouseMove: DragEventListener<HTMLDivElement>;
@@ -38,6 +39,7 @@ export const Text: React.FC<Props> = ({
   handleMouseOut,
   handleMouseUp,
   lineHeight,
+  onClick,
 }) => {
   return (
     <div
@@ -46,6 +48,7 @@ export const Text: React.FC<Props> = ({
       onMouseUp={handleMouseUp}
       onMouseOut={handleMouseOut}
       onDoubleClick={toggleEditMode}
+      onClick={onClick}
       style={{
         width,
         border: 1,

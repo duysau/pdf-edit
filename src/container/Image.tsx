@@ -10,6 +10,7 @@ interface Props {
   pageHeight: number;
   removeImage: () => void;
   updateImageAttachment: (imageObject: Partial<ImageAttachment>) => void;
+  setCoordinates: (x: number, y: number) => void;
 }
 
 export const Image = React.memo(function Image({
@@ -21,6 +22,7 @@ export const Image = React.memo(function Image({
   pageWidth,
   removeImage,
   pageHeight,
+  setCoordinates,
   updateImageAttachment,
 }: ImageAttachment & Props) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -61,7 +63,7 @@ export const Image = React.memo(function Image({
         pageWidth,
         pageHeight
       );
-
+      setCoordinates(positionLeft, positionTop);
       setPositionTop(top);
       setPositionLeft(left);
     }
@@ -168,12 +170,16 @@ export const Image = React.memo(function Image({
     renderImage(img);
   }, [img, canvasWidth, canvasHeight]);
 
-  const handleClick = () => setDimmerActive(true);
+  const handleClick = () => {
+    setCoordinates(positionLeft, positionTop);
+    setDimmerActive(true);
+  };
   const onCancelDelete = () => setDimmerActive(false);
 
   const deleteImage = () => {
     onCancelDelete();
     removeImage();
+    setCoordinates(0, 0);
   };
 
   return (

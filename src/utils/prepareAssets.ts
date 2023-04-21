@@ -31,11 +31,7 @@ const scripts: Script[] = [
 ];
 
 const assets: Record<string, any> = {};
-export const getAsset = (scriptName: string) => {
-  const accc = assets[scriptName];
-  console.log("assets[scriptName]", accc);
-  return assets[scriptName];
-};
+export const getAsset = (scriptName: string) => assets[scriptName];
 
 export const prepareAssets = (): void => {
   // prepare scripts

@@ -12,6 +12,7 @@ interface Props {
   pdfName: string;
   pageDimensions: Dimensions;
   removeAttachment: (index: number) => void;
+  setCoordinates: (x: number, y: number) => void;
   updateAttachment: (index: number, attachment: Partial<Attachment>) => void;
 }
 
@@ -21,6 +22,7 @@ export const Attachments: React.FC<Props> = ({
   pageDimensions,
   removeAttachment,
   updateAttachment,
+  setCoordinates,
 }) => {
   const handleAttachmentUpdate =
     (index: number) => (attachment: Partial<Attachment>) =>
@@ -40,6 +42,7 @@ export const Attachments: React.FC<Props> = ({
                   pageHeight={pageDimensions.height}
                   removeImage={() => removeAttachment(index)}
                   updateImageAttachment={handleAttachmentUpdate(index)}
+                  setCoordinates={setCoordinates}
                   {...(attachment as ImageAttachment)}
                 />
               );
@@ -53,6 +56,7 @@ export const Attachments: React.FC<Props> = ({
                   pageHeight={pageDimensions.height}
                   removeDrawing={() => removeAttachment(index)}
                   updateDrawingAttachment={handleAttachmentUpdate(index)}
+                  setCoordinates={setCoordinates}
                   {...(attachment as DrawingAttachment)}
                 />
               );
@@ -64,6 +68,7 @@ export const Attachments: React.FC<Props> = ({
                   key={key}
                   pageWidth={pageDimensions.width}
                   pageHeight={pageDimensions.height}
+                  setCoordinates={setCoordinates}
                   updateTextAttachment={handleAttachmentUpdate(index)}
                   {...(attachment as TextAttachment)}
                 />

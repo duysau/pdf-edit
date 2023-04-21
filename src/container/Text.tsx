@@ -7,6 +7,7 @@ interface Props {
   pageWidth: number;
   pageHeight: number;
   updateTextAttachment: (textObject: Partial<TextAttachment>) => void;
+  setCoordinates: (x: number, y: number) => void;
 }
 
 export const Text = ({
@@ -20,6 +21,7 @@ export const Text = ({
   fontFamily,
   pageHeight,
   pageWidth,
+  setCoordinates,
   updateTextAttachment,
 }: TextAttachment & Props) => {
   const inputRef = useRef<HTMLInputElement>(null);
@@ -49,6 +51,7 @@ export const Text = ({
 
       setPositionTop(top);
       setPositionLeft(left);
+      setCoordinates(positionTop, positionLeft);
     }
   };
 
@@ -141,6 +144,12 @@ export const Text = ({
     setContent(value);
   };
 
+  const handleMouseClick = () => {
+    // console.log("positionTop", positionTop);
+    // console.log("positionLeft", positionLeft);
+    setCoordinates(positionTop, positionLeft);
+  };
+
   return (
     <Component
       text={content}
@@ -151,6 +160,7 @@ export const Text = ({
       lineHeight={lineHeight}
       inputRef={inputRef}
       fontFamily={fontFamily}
+      onClick={handleMouseClick}
       positionTop={positionTop}
       onChangeText={onChangeText}
       positionLeft={positionLeft}

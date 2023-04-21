@@ -47,6 +47,5 @@ export const readAsPDF = async (file: File): Promise<PDF> => {
   // Safari possibly get webkitblobresource error 1 when using origin file blob
   const blob = new Blob([file]);
   const url = window.URL.createObjectURL(blob);
-  console.log("cac", pdfjsLib.getDocument(url).promise);
   return pdfjsLib.getDocument(url).promise;
 };

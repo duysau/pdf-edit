@@ -8,6 +8,7 @@ interface Props {
   pageHeight: number;
   removeDrawing: () => void;
   updateDrawingAttachment: (drawingObject: Partial<DrawingAttachment>) => void;
+  setCoordinates: (x: number, y: number) => void;
 }
 
 export const Drawing = ({
@@ -21,6 +22,7 @@ export const Drawing = ({
   pageWidth,
   pageHeight,
   removeDrawing,
+  setCoordinates,
   updateDrawingAttachment,
 }: DrawingAttachment & Props) => {
   const svgRef = createRef<SVGSVGElement>();
@@ -58,7 +60,7 @@ export const Drawing = ({
         pageWidth,
         pageHeight
       );
-
+      setCoordinates(positionLeft, positionTop);
       setPositionTop(top);
       setPositionLeft(left);
     }
@@ -102,7 +104,10 @@ export const Drawing = ({
     }
   };
 
-  const handleClick = () => setDimmerActive(true);
+  const handleClick = () => {
+    setCoordinates(positionLeft, positionTop);
+    setDimmerActive(true);
+  };
   const cancelDelete = () => setDimmerActive(false);
 
   const confirmDelete = () => {

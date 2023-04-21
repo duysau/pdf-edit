@@ -13,8 +13,14 @@ import { useLayoutEffect, useState } from "react";
 import { Container } from "reactstrap";
 import { ggID } from "utils/helper";
 
+interface Position {
+  x: number;
+  y: number;
+}
+
 const PdfPage = () => {
   const [drawingModalOpen, setDrawingModalOpen] = useState(false);
+  const [coordinates, setCoordinates] = useState<Position>({ x: 0, y: 0 });
   const {
     file,
     initialize,
@@ -40,7 +46,7 @@ const PdfPage = () => {
     remove,
     setPageIndex,
   } = useAttachments();
-
+  console.log("pageAttachments", pageAttachments);
   const initializePageAndAttachments = (pdfDetails: Pdf) => {
     initialize(pdfDetails);
     const numberOfPages = pdfDetails.pages.length;
@@ -100,7 +106,10 @@ const PdfPage = () => {
     };
     addAttachment(newDrawingAttachment);
   };
-  console.log("pageAttachments", pageAttachments);
+
+  const getPositionAttachment = (x: number, y: number) => {
+    setCoordinates({ x: x, y: y });
+  };
 
   useLayoutEffect(() => setPageIndex(pageIndex), [pageIndex, setPageIndex]);
 
@@ -143,6 +152,10 @@ const PdfPage = () => {
         savingPdfStatus={isSaving}
         uploadNewPdf={handlePdfClick}
         isPdfLoaded={!!file}
+        coordinates={coordinates}
+        isHaveAttachments={
+          file && pageAttachments && pageAttachments.length > 0
+        }
       />
 
       {!file ? (
@@ -170,6 +183,7 @@ const PdfPage = () => {
                     updateAttachment={update}
                     pageDimensions={dimensions}
                     attachments={pageAttachments}
+                    setCoordinates={getPositionAttachment}
                   />
                 )}
               </div>

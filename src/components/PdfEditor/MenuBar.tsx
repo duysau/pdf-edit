@@ -9,6 +9,8 @@ interface Props {
   isPdfLoaded: boolean;
   savingPdfStatus: boolean;
   savePdf: () => void;
+  coordinates: { x: number; y: number };
+  isHaveAttachments: boolean;
 }
 
 export const MenuBar: React.FC<Props> = ({
@@ -19,6 +21,8 @@ export const MenuBar: React.FC<Props> = ({
   isPdfLoaded,
   savingPdfStatus,
   savePdf,
+  coordinates,
+  isHaveAttachments,
 }) => {
   const items: MenuProps["items"] = [
     {
@@ -41,6 +45,11 @@ export const MenuBar: React.FC<Props> = ({
       </Col>
       {isPdfLoaded && (
         <>
+          {isHaveAttachments && (
+            <Col className="gutter-row" span={3}>
+              X: {coordinates.x} Y {coordinates.y}
+            </Col>
+          )}
           <Col className="gutter-row" span={2}>
             <Dropdown menu={{ items }} trigger={["click"]}>
               <p onClick={(e) => e.preventDefault()}>
@@ -56,6 +65,9 @@ export const MenuBar: React.FC<Props> = ({
           </Col>
           <Col className="gutter-row" span={3}>
             <Button onClick={uploadNewPdf}>Upload New</Button>
+          </Col>
+          <Col className="gutter-row" span={3}>
+            <Button>Image drag drop</Button>
           </Col>
         </>
       )}

@@ -43,7 +43,7 @@ export const Image: React.FC<Props> = ({
       onMouseMove={handleMouseMove}
       onMouseUp={handleMouseUp}
       onMouseOut={handleMouseOut}
-      onDoubleClick={onClick}
+      onClick={onClick}
       style={{
         position: "absolute",
         top: positionTop,
